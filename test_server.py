@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import json
 import SimpleHTTPServer
 import SocketServer
 import pprint
@@ -15,7 +16,8 @@ class Handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
         print "Body:"
         content_len = int(self.headers.getheader('content-length'))
         body = self.rfile.read(content_len)
-        pprint.pprint(body)
+        jbody = json.loads(body)
+        pprint.pprint(jbody)
         self.send_response(200)
 
 if __name__ == '__main__':
