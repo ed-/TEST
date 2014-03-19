@@ -2,6 +2,7 @@
 
 import SimpleHTTPServer
 import SocketServer
+import pprint
 
 class Handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
     def do_GET(self):
@@ -14,7 +15,7 @@ class Handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
         print "Body:"
         content_len = int(self.headers.getheader('content-length'))
         body = self.rfile.read(content_len)
-        print body
+        pprint.pprint(body)
         self.send_response(200)
 
 if __name__ == '__main__':
